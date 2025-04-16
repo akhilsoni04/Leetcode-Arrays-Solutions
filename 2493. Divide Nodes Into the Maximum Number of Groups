@@ -1,0 +1,81 @@
+import java.util.*;
+
+class Solution {
+    public int magnificentSets(int n, int[][] edges) {
+        List<Integer>[] graph = new ArrayList[n + 1];
+        for (int i = 0; i <= n; i++) {
+            graph[i] = new ArrayList<>();
+        }
+        for (int[] edge : edges) {
+            graph[edge[0]].add(edge[1]);
+            graph[edge[1]].add(edge[0]);
+        }
+
+        int[] color = new int[n + 1]; 
+        Arrays.fill(color, 0);
+        int maxGroups = 0;
+        
+        for (int i = 1; i <= n; i++) {
+            if (color[i] == 0) { 
+                List<Integer> component = new ArrayList<>();
+                if (!isBipartite(graph, i, color, component)) {
+                    return -1;
+                }
+                maxGroups += getMaxDepth(graph, component);
+            }
+        }
+        return maxGroups;
+    }
+
+    private boolean isBipartite(List<Integer>[] graph, int node, int[] color, List<Integer> component) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(node);
+        color[node] = 1;
+        
+        while (!queue.isEmpty()) {
+            int curr = queue.poll();
+            component.add(curr);
+            
+            for (int neighbor : graph[curr]) {
+                if (color[neighbor] == 0) { 
+                    color[neighbor] = -color[curr];
+                    queue.add(neighbor);
+                } else if (color[neighbor] == color[curr]) {
+                    return false; 
+                }
+            }
+        }
+        return true;
+    }
+
+    private int getMaxDepth(List<Integer>[] graph, List<Integer> component) {
+        int maxDepth = 0;
+        for (int node : component) {
+            maxDepth = Math.max(maxDepth, bfsDepth(graph, node));
+        }
+        return maxDepth;
+    }
+
+    private int bfsDepth(List<Integer>[] graph, int start) {
+        Queue<Integer> queue = new LinkedList<>();
+        Map<Integer, Integer> depth = new HashMap<>();
+        
+        queue.add(start);
+        depth.put(start, 1);
+        
+        int maxDepth = 1;
+        while (!queue.isEmpty()) {
+            int curr = queue.poll();
+            int d = depth.get(curr);
+            
+            for (int neighbor : graph[curr]) {
+                if (!depth.containsKey(neighbor)) {
+                    depth.put(neighbor, d + 1);
+                    maxDepth = Math.max(maxDepth, d + 1);
+                    queue.add(neighbor);
+                }
+            }
+        }
+        return maxDepth;
+    }
+}
