@@ -16,3 +16,16 @@ class Solution {
     }
 
 }
+
+
+
+✅ Final Time & Space Complexity
+⏱ Time Complexity:
+👉 O(n log n * k + L)
+n log n * k — custom sort using string comparison.
+L — final result string length.
+
+🧠 Space Complexity:
+👉 O(n + L)
+O(n) — string array.
+O(L) — final answer stored in StringBuilder.
