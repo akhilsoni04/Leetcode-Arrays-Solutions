@@ -17,7 +17,5 @@ class Solution {
 
 
 In this code this line 
-if(result > Integer.MAX_VALUE/10 || result < Integer.MIN_VALUE/10){
-            return 0;
-        }
+    if(result > Integer.MAX_VALUE/10 || result < Integer.MIN_VALUE/10)
 used to prevent reach of integer that is 32 -bit range .
