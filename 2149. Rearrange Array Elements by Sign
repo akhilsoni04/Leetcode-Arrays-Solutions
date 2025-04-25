@@ -1,0 +1,54 @@
+Approach 1
+
+Time: O(N)
+Space: O(N)
+
+
+class Solution {
+    public int[] rearrangeArray(int[] nums) {
+        List<Integer> positive = new ArrayList();
+        List<Integer> negative = new ArrayList();
+
+        for(int i=0; i<nums.length; i++){
+            if(nums[i] > 0){
+                positive.add(nums[i]);
+            }
+            else {
+                negative.add(nums[i]);
+            }
+        }
+        int result [] = new int [nums.length];
+        int i=0, j=0, k=0;
+        while(i < positive.size() && j < negative.size()){
+            result[k++] = positive.get(i++);
+            result[k++] = negative.get(j++);
+        }
+        return result ;
+    }
+}
+
+
+----------------------------------------------------------------------------
+
+
+Appraoch 2 
+
+same complexity 
+
+class Solution {
+    public int[] rearrangeArray(int[] nums) {
+        int ans [] = new int[nums.length];
+        int pos = 0;
+        int neg = 1;
+        for(int i=0; i<nums.length; i++){
+            if(nums[i] < 0){
+                ans[neg] = nums[i];
+                neg+=2;
+            }else {
+                ans[pos] =nums[i];
+                pos+=2;
+            }
+        }
+        return ans;
+    }
+} 
