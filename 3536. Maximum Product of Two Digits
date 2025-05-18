@@ -1,0 +1,19 @@
+Time Complexity: O(log n)
+Space Complexity: O(1)
+
+class Solution {
+    public int maxProduct(int n) {
+        int big = 0, secondBig = 0;
+        while(n>0){
+            int digit = n % 10;
+            n /= 10;
+            if(digit > big){
+                secondBig = big ;
+                big = digit;
+            }else if (digit > secondBig){
+                secondBig = digit;
+            }
+        }
+        return big * secondBig;
+    }
+}
