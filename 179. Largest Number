@@ -1,0 +1,36 @@
+Time Complexity : O(n log n × k)
+Space Complexity : O(n × k)
+
+
+
+class Solution {
+    public String largestNumber(int[] nums) {
+        String[] str = new String[nums.length];
+        for(int i=0; i<nums.length; i++){
+            str[i] = String.valueOf(nums[i]);
+        }
+        Arrays.sort(str , (a,b)-> (b+a).compareTo(a+b));
+        if(str[0].equals("0")){
+            return "0";
+        }
+        StringBuilder sb = new StringBuilder();
+        for(String s : str){
+            sb.append(s);
+        }
+        return sb.toString();
+    }
+
+}
+
+
+
+✅ Final Time & Space Complexity
+⏱ Time Complexity:
+👉 O(n log n * k + L)
+n log n * k — custom sort using string comparison.
+L — final result string length.
+
+🧠 Space Complexity:
+👉 O(n + L)
+O(n) — string array.
+O(L) — final answer stored in StringBuilder.
