@@ -13,3 +13,7 @@ public class ContainerWithMostWater {
         return maxArea;
     }
 }
+
+
+// Time Complexity: O(n)
+// Space Complexity: O(1)
