@@ -17,5 +17,6 @@ class lengthOfLongestSubstring {
         return maxLength;
     }
 }
+
 // Time Complexity : O(n)
 // Space Complexity : O(min(n, m))
