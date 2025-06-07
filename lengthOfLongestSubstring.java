@@ -1,6 +1,6 @@
 import java.util.*;
-class Solution {
-    public int lengthOfLongestSubstring(String s) {
+class lengthOfLongestSubstring {
+    public int substringLength(String s) {
         int n = s.length();
         int left = 0;
         int maxLength = 0;
