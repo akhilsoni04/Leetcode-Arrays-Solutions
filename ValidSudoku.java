@@ -23,6 +23,7 @@ public class ValidSudoku {
 
                 if (rows[r].contains(value) || cols[c].contains(value) || boxes[boxIndex].contains(value)) {
                     return false;
+                    
                 }
 
                 rows[r].add(value);
